@@ -20,10 +20,68 @@
 
 
 #include <iostream>
+#include <iomanip>
+using namespace std;
+
 
 int main()
 {
-    std::cout << "Hello World!\n";
+   
+	const int min_weight = 0,
+		max_weight = 20,
+		min_distance = 10,
+		max_distance = 3000;
+
+	float package_weight,
+		distance,
+		total_charges;
+
+	cout << "What is the weight of the package?";
+	cin >> package_weight;
+
+	if (package_weight <= min_weight && package_weight > max_weight)
+	{
+		cout << "The package must be more than 0kg and less than 20kg.\n"
+			<< "Please rerun the program to try again." << endl;
+	}
+	else
+	{
+		cout << "Distance?";
+		cin >> distance;
+
+		if (distance < min_distance && distance > max_distance)
+		{
+			cout << "The distance must be between 10 and 3000 miles\n"
+				<< "Please rerun and try again." << endl;
+		}
+		else
+		{
+			if (package_weight <= 2)
+				total_charges = (distance / 500) * 1.10;
+
+			else if (package_weight > 2 && package_weight <= 6)
+				total_charges = (distance / 500) * 2.20;
+
+			else if (package_weight > 6 && package_weight <= 10)
+				total_charges = (distance / 500) * 3.70;
+
+			else if (package_weight > 10 && package_weight <= 20)
+				total_charges = (distance / 500) * 4.80;
+
+			cout << setprecision(2) << fixed
+				<< "Total charges are $"
+				<< total_charges
+				<< "\nFor a distance of"
+				<< distance
+				<< "miles\n and a total weight of"
+				<< package_weight
+				<< "kg."
+				<< endl;
+
+		}
+	}
+
+	return 0;
 }
 
 
